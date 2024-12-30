@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(https://i.postimg.cc/RFVdmZQs/galaktika-tumannost-razmytost-65152-1920x1080.jpg); /* Замените на ваш фон */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Фоновое изображение остаётся неподвижным при прокрутке */
+            color: white;
+        }
+        header {
+            background-color: rgba(58, 0, 85, 0.7);
+            padding: 20px;
+            border: 1px solid black;
+            text-align: center; /* Центрируем заголовок */
+        }
+        .container {
+            display: flex; /* Используем flexbox для расположения элементов */
+            padding: 20px;
+        }
+        .content {
+            flex: 3; /* Элемент занимает больше свободного пространства */
+            margin-right: 20px; /* Промежуток между текстом и кнопками */
+            background-color: rgba(58, 0, 85, 0.7);
+            padding: 15px;
+            border: 1px solid black;
+        }
+        nav {
+            flex: 1; /* Задаем фиксированную ширину для навигации */
+            text-align: right; /* Выравниваем кнопки вправо */
+        }
+        button {
+            background-color: rgba(102, 0, 143, 0.822);
+            border: none;
+            color: white;
+            border: 1px solid black;
+            padding: 15px 30px;
+            margin: 10px 0; /* Отдельные кнопки по вертикали */
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block; /* Кнопки располагаются по вертикали */
+        }
+        button:hover {
+            background-color: rgb(173, 33, 255); /* Эффект при наведении */
+        }
+        section {
+            display: none; /* Скрываем все секции по умолчанию */
+            background-color: rgba(58, 0, 85, 0.7);
+            border: 1px solid black;
+            margin: 20px 0;
+            padding: 20px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            // Скрыть текстовый блок
+            const content = document.querySelector('.content');
+            content.style.display = 'none';
+
+            // Скрыть все секции
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Показать только выбранную секцию
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+
+        // Показываем главную секцию при загрузке страницы
+        window.onload = function() {
+            showSection('glavnaya');
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Добро пожаловать на мой сайт</h1>
+</header>
+
+<div class="container">
+    <div class="content">
+    </div>
+    <nav>
+        <button onclick="showSection('glavnaya')">Главная</button>
+        <button onclick="showSection('syuzhet')">Сюжет</button>
+        <button onclick="showSection('pravila')">Правила</button>
+        <button onclick="showSection('chat')">Ссылка на чат</button>
+        <button onclick="showSection('raspisanie')">Расписание</button>
+        <button onclick="showSection('administraciya')">Администрация</button>
+    </nav>
+</div>
+
+<section id="glavnaya">
+    <h2>Главная</h2>
+    <p>Это основная информация о вашем сайте или проекте.</p>
+</section>
+
+<section id="syuzhet">
+    <h2>Сюжет</h2>
+    <p>Здесь вы можете описать сюжет вашего проекта или игры.</p>
+</section>
+
+<section id="pravila">
+    <h2>Правила</h2>
+    <p>Опишите правила, которых необходимо придерживаться.</p>
+</section>
+
+<section id="chat">
+    <h2>Ссылка на чат</h2>
+    <p>Ссылка на ваш чат: <a href="https://t.me/+CXIhJtld_EQ4ODFi" style="color: rgb(55, 102, 255);">Chat</a></p>
+</section>
+
+<section id="raspisanie">
+    <h2>Расписание</h2>
+    <p>Здесь вы можете указать расписание мероприятий.</p>
+</section>
+
+<section id="administraciya">
+    <h2>Администрация</h2>
+    <p>Информация о администрации проекта или игры.</p>
+</section>
+
+</body>
+</html>
