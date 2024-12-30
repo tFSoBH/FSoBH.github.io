@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>какой-то сайт</title>
+    <style>
+        body {
+            font-family: serif, oblique;
+            background-image: url(https://i.postimg.cc/RFVdmZQs/galaktika-tumannost-razmytost-65152-1920x1080.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: rgb(184, 78, 255);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Задаем минимальную высоту для выравнивания */
+        }
+
+        header {
+            background-color: rgba(58, 0, 85, 0.7);
+            border: solid 6px black;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex: 1; /* Позволяем контейнеру занимать все доступное пространство */
+            justify-content: center; /* Центрируем по горизонтали */
+            align-items: flex-start; /* Центрируем по вертикали */
+            padding-top: 20px;
+        }
+
+        .content {
+            flex-grow: 1; /* Контент будет занимать доступное пространство */
+            margin: 10px; /* Отступы для контента */
+            background-color: rgba(58, 0, 85, 0.5);
+            padding: 15px;
+            border: 5px dashed black;
+            border-radius: 5px;
+            max-width: 90%; /* Максимальная ширина по отношению к экрану */
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column; /* Вертикальное расположение кнопок */
+            padding: 10px;
+        }
+
+        nav button {
+            margin: 5px 0; /* Отступы между кнопками */
+            background-color: rgba(102, 0, 143, 0.822);
+            border: none;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%; /* Скорректировано для одинакового размера кнопок */
+        }
+
+        nav button:hover {
+            background-color: rgb(173, 33, 255);
+        }
+
+        .form-container {
+            background-color: rgba(102, 0, 143, 0.822);
+            padding: 20px;
+            margin-bottom: 200px;
+            border-radius: 10px;
+            width: 250px; /* Ширина блока с формой */
+            margin-right: 20px; /* Отступ, чтобы отделить форму от кнопок */
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px); /* Полная ширина минус отступы */
+            padding: 10px;
+            border: 2px solid black;
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content > div');
+            sections.forEach(section => {
+                section.style.display = section.id === sectionId ? 'block' : 'none';
+            });
+        }
+
+        window.onload = function() {
+            showSection('glavnaya'); // Показываем главную секцию при загрузке
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать!</h1>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div id="glavnaya">
+                <h2>Главная</h2>
+                <p>Короткая информация про всё</p>
+            </div>
+            <div id="syuzhet" style="display: none;">
+                <h2>Сюжет</h2>
+                <p>Текст сюжета</p>
+            </div>
+            <div id="pravila" style="display: none;">
+                <h2>Правила</h2>
+                <p>Текст правил</p>
+            </div>
+            <div id="chat" style="display: none;">
+                <h2>Ссылка на чат</h2>
+                <p>Чат в телеграмме: <a href="https://t.me/+CXIhJtld_EQ4ODFi">Ссылка</a> </p>
+            </div>
+            <div id="raspisanie" style="display: none;">
+                <h2>Расписание</h2>
+                <p>Список дней и времени</p>
+            </div>
+            <div id="administraciya" style="display: none;">
+                <h2>Администрация</h2>
+                <p>Список администрации</p>
+            </div>
+            <nav>
+                <button onclick="showSection('glavnaya')">Главная</button>
+                <button onclick="showSection('syuzhet')">Сюжет</button>
+                <button onclick="showSection('pravila')">Правила</button>
+                <button onclick="showSection('chat')">Ссылка на чат</button>
+                <button onclick="showSection('raspisanie')">Расписание</button>
+                <button onclick="showSection('administraciya')">Администрация</button>
+            </nav>
+        </div>
+        <div class="form-container">
+            <h1>Вход на сайт</h1>
+            <label for="nickname">Введите ваш ник:</label>
+            <input type="text" id="nickname">
+            <button onclick="login()">Войти</button>
+            <div id="welcome" class="hidden">
+                <h2>Добро пожаловать!</h2>
+            </div>
+            <div id="error" class="hidden" style="color: red;">
+                Неверный ник!
+            </div>
+        </div>
+    </div>
+</body>
+</html>
