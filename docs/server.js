@@ -1,1 +1,0 @@
-allowedUsers = ['user1', 'user2', 'user3']; // Список допустимых ников
