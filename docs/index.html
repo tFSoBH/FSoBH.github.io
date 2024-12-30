@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(https://i.postimg.cc/RFVdmZQs/galaktika-tumannost-razmytost-65152-1920x1080.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Задаем минимальную высоту для выравнивания */
+        }
+
+        header {
+            background-color: rgba(58, 0, 85, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex: 1; /* Позволяем контейнеру занимать все доступное пространство */
+        }
+
+        .content {
+            flex-grow: 1; /* Контент будет занимать доступное пространство */
+            margin: 10px; /* Отступы для контента */
+            background-color: rgba(58, 0, 85, 0.7);
+            padding: 15px;
+            border: 1px solid black;
+            width: fit-content; /* Ширина блока с контентом будет только вокруг текста */
+            max-width: 90%; /* Максимальная ширина по отношению к экрану */
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column; /* Вертикальное расположение кнопок */
+            justify-content: flex-start; /* Выровнять по верхней части */
+            margin: 10px; /* Отступы для навигации */
+        }
+
+        nav button {
+            margin: 5px 0; /* Отступы между кнопками */
+            background-color: rgba(102, 0, 143, 0.822);
+            border: none;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%; /* Изменено для одинакового размера кнопок */
+        }
+
+        nav button:hover {
+            background-color: rgb(173, 33, 255);
+        }
+
+        .registration {
+            display: none; /* Скрыто по умолчанию */
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid black; /* Рамка для формы регистрации */
+            background-color: rgba(58, 0, 85, 0.7);
+            width: fit-content; /* Ширина формы будет только вокруг текста */
+        }
+
+        .registration input {
+            display: block;
+            margin: 10px 0;
+            width: calc(100% - 20px); /* Учитываем отступы */
+            padding: 10px; /* Паддинг для инпутов */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* Выровнять кнопку регистрации вправо */
+            margin-top: 20px; /* Отодвигаем кнопки вниз */
+        }
+
+        .user-list {
+            margin-top: 20px;
+            background-color: rgba(58, 0, 85, 0.5);
+            padding: 15px;
+            border: 1px solid black;
+            max-width: 90%; /* Ограничим ширину списка пользователей */
+        }
+    </style>
+    <script>
+        function toggleRegistrationForm() {
+            const registrationForm = document.querySelector('.registration');
+            registrationForm.style.display = registrationForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function registerUser(event) {
+            event.preventDefault(); // Останавливаем отправку формы
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Здесь можно добавить логику для обработки регистрации пользователей
+
+            document.getElementById('registration-message').innerText = 'Пользователь зарегистрирован';
+            document.getElementById('user-list').innerHTML += `<li>${username} - Пароль: ${password}</li>`; // Добавляем в список пользователей
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content > div'); // Изменено на селектор для div внутри content
+            sections.forEach(section => {
+                section.style.display = section.id === sectionId ? 'block' : 'none';
+            });
+        }
+
+        window.onload = function() {
+            showSection('glavnaya'); // Показываем главную секцию при загрузке
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать на мой сайт</h1>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div id="glavnaya">
+                <h2>Главная</h2>
+                <p>Информация о клане...</p>
+            </div>
+            <div id="syuzhet" style="display: none;">
+                <h2>Сюжет</h2>
+                <p>Сюжет клана...</p>
+            </div>
+            <div id="pravila" style="display: none;">
+                <h2>Правила</h2>
+                <p>Правила клана...</p>
+            </div>
+            <div id="chat" style="display: none;">
+                <h2>Ссылка на чат</h2>
+                <p>Ссылка на чат...</p>
+            </div>
+            <div id="raspisanie" style="display: none;">
+                <h2>Расписание</h2>
+                <p>Расписание клана...</p>
+            </div>
+            <div id="administraciya" style="display: none;">
+                <h2>Администрация</h2>
+                <p>Информация о администрации...</p>
+            </div>
+            <div class="user-list">
+                <h3>Список пользователей:</h3>
+                <ul id="user-list">
+                    <!-- Список зарегистрированных пользователей будет здесь -->
+                </ul>
+            </div>
+        </div>
+        <nav>
+            <button onclick="showSection('glavnaya')">Главная</button>
+            <button onclick="showSection('syuzhet')">Сюжет</button>
+            <button onclick="showSection('pravila')">Правила</button>
+            <button onclick="showSection('chat')">Ссылка на чат</button>
+            <button onclick="showSection('raspisanie')">Расписание</button>
+            <button onclick="showSection('administraciya')">Администрация</button>
+            <div class="button-container">
+                <button onclick="toggleRegistrationForm()">Регистрация</button>
+            </div>
+        </nav>
+    </div>
+    <div class="registration">
+        <h2>Регистрация</h2>
+        <form id="registration-form" onsubmit="registerUser(event)">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" required>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <div id="registration-message"></div>
+    </div>
+    <h1>Вход на сайт</h1>
+
+<label for="nickname">Введите ваш ник:</label>
+<input type="text" id="nickname">
+<button onclick="login()">Войти</button>
+
+<div id="welcome" class="hidden">
+    <h2>Добро пожаловать!</h2>
+</div>
+
+<div id="error" class="hidden" style="color: red;">
+    Неверный ник!
+</div>
+
+<script>
+    function login() {
+        const nicknameInput = document.getElementById('nickname').value;
+
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nickname: nicknameInput }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('welcome').classList.remove('hidden');
+                document.getElementById('error').classList.add('hidden');
+            } else {
+                document.getElementById('error').classList.remove('hidden');
+                document.getElementById('welcome').classList.add('hidden');
+            }
+        });
+    }
+</script>
+</body>
+</html>
